@@ -25,6 +25,11 @@ export const Filters: FC = () => {
     resetFilters();
   };
 
+  const clearFilters = () => {
+    getAllIds();
+    resetFilters();
+  };
+
   if (data)
     return (
       <form

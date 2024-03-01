@@ -32,5 +32,6 @@ client.interceptors.response.use(
     console.error(error.code, error.message);
 
     client(error.config);
+    client(error.config);
   }
 );

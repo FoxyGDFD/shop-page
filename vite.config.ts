@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/shop-page/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

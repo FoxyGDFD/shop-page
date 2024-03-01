@@ -1,14 +1,19 @@
 {
-  "name": "shoppage",
+  "name": "shop-page",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://foxygdfd.github.io/shop-page/",
+  "repository": "https://github.com/FoxyGDFD/shop-page.git",
+  "author": "Michail Panfilov <mic.panfil0v@gmail.com>",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",

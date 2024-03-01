@@ -17,6 +17,19 @@ export const useGetIds = () => {
   });
 };
 
+export const useGetIdsByTrigger = () => {
+  const { setProducts } = useProductsStore();
+
+  return useMutation({
+    mutationKey: ['ids'],
+    mutationFn: () =>
+      ProductAPI.getIds().then(data => {
+        setProducts(data);
+        return data;
+      }),
+  });
+};
+
 export const useGetProductItems = (curPage: number) => {
   return useMutation({
     mutationKey: ['page-items', curPage],

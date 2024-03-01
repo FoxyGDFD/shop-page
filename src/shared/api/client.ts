@@ -16,8 +16,10 @@ client.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
     date.getUTCMonth() < 9
       ? `0${date.getUTCMonth() + 1}`
       : date.getUTCMonth() + 1;
+  const monthDate =
+    date.getUTCMonth() < 10 ? `0${date.getUTCDate()}` : date.getUTCDate();
 
-  const timestamp = [date.getUTCFullYear(), month, date.getUTCDate()].join('');
+  const timestamp = [date.getUTCFullYear(), month, monthDate].join('');
 
   config.headers['X-Auth'] = md5(`${API_PASSWORD}_${timestamp}`);
 
@@ -29,6 +31,6 @@ client.interceptors.response.use(
   async (error: ApiError) => {
     console.error(error.code, error.message);
 
-    // client(error.config);
+    client(error.config);
   }
 );

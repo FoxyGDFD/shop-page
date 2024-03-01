@@ -22,11 +22,18 @@ export const ProductList: FC = () => {
 
   return (
     <Grid
+      xs={4}
+      sm={5}
+      md={10}
       container
-      rowSpacing={4}
       spacing={2}
       columns={{ xs: 4, sm: 8, md: 12 }}
-      sx={{ alignSelf: 'flex-start' }}
+      sx={{
+        alignSelf: 'flex-start',
+        justifySelf: 'center',
+        width: '100%',
+        margin: '0 auto',
+      }}
     >
       {products?.map((product, index) => (
         <Grid xs={4} sm={4} md={4} key={index}>

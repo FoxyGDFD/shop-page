@@ -1,5 +1,6 @@
 import { PagesCounter } from '@features';
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { Filters, ProductList } from '@widgets';
 import { FC } from 'react';
 
@@ -12,16 +13,10 @@ export const ShopPage: FC = () => (
       gap: 3,
     }}
   >
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        gap: 3,
-      }}
-    >
+    <Grid container spacing={4} columns={{ xs: 4, sm: 8, md: 12 }}>
       <Filters />
       <ProductList />
-    </Box>
+    </Grid>
     <PagesCounter />
   </Container>
 );

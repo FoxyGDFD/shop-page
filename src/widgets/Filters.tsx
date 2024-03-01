@@ -6,6 +6,7 @@ import {
 } from '@entities/product';
 import { FilterItem } from '@features';
 import { Button, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 import { FC, FormEvent } from 'react';
 
 export const Filters: FC = () => {
@@ -27,11 +28,11 @@ export const Filters: FC = () => {
 
   if (data)
     return (
-      <form
-        onSubmit={onSubmit}
-        style={{
-          minWidth: '250px',
-          maxWidth: '300px',
+      <Grid
+        xs={4}
+        sm={4}
+        md={2}
+        sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
@@ -43,17 +44,12 @@ export const Filters: FC = () => {
         {[...data.entries()].map(([key, value], index) => (
           <FilterItem key={index} name={key} list={value} />
         ))}
-        <Button
-          type='reset'
-          variant='outlined'
-          color='error'
-          onClick={clearFilters}
-        >
+        <Button variant='outlined' color='error' onClick={clearFilters}>
           Сбросить фильтры
         </Button>
-        <Button type='submit' variant='outlined'>
+        <Button onClick={onSubmit} variant='outlined'>
           Найти
         </Button>
-      </form>
+      </Grid>
     );
 };

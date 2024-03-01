@@ -1,6 +1,7 @@
 import {
   useFilterIds,
   useFilterStore,
+  useGetIdsByTrigger,
   useGetProductFields,
 } from '@entities/product';
 import { FilterItem } from '@features';
@@ -10,12 +11,18 @@ import { FC, FormEvent } from 'react';
 export const Filters: FC = () => {
   const { data } = useGetProductFields();
   const { mutate: filter } = useFilterIds();
+  const { mutate: getAllIds } = useGetIdsByTrigger();
 
-  const { resetFilters, ...filters } = useFilterStore();
+  const { resetFilters, filters } = useFilterStore();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    filter({ ...filters });
+    if (Object.keys(filters).length) filter(filters);
+  };
+
+  const clearFilters = () => {
+    getAllIds();
+    resetFilters();
   };
 
   if (data)
@@ -40,7 +47,7 @@ export const Filters: FC = () => {
           type='reset'
           variant='outlined'
           color='error'
-          onClick={resetFilters}
+          onClick={clearFilters}
         >
           Сбросить фильтры
         </Button>

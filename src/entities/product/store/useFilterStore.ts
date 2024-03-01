@@ -1,13 +1,17 @@
 import { ProductFilters } from '@shared/types';
 import { create } from 'zustand';
 
-interface FiltersStore extends Partial<ProductFilters> {
+interface FiltersStore {
+  filters: Partial<ProductFilters>;
   setFilterValue: (key: keyof ProductFilters, value: unknown) => void;
   resetFilters: () => void;
 }
 
 export const useFilterStore = create<FiltersStore>()(set => ({
-  setFilterValue: (key, value) => set({ [key]: value }),
-  resetFilters: () =>
-    set({ brand: undefined, price: undefined, product: undefined }),
+  filters: {},
+  setFilterValue: (key, value) =>
+    set(({ filters }) => ({
+      filters: Object.assign(filters, { [key]: value }),
+    })),
+  resetFilters: () => set({ filters: {} }),
 }));

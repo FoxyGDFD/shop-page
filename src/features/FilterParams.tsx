@@ -24,7 +24,7 @@ export const FilterItem: FC<FilterValuesProps> = ({ name, list }) => {
     setVisibleList(visibleList.length > 3 ? list.slice(0, 3) : list);
   };
 
-  const { setFilterValue, ...filters } = useFilterStore();
+  const { setFilterValue, filters } = useFilterStore();
   const changeFilterValue = (value: unknown) => () => {
     if (value === filters[name]) setFilterValue(name, '');
     else setFilterValue(name, value);
